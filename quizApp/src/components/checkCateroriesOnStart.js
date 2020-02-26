@@ -5,10 +5,10 @@ const refs = {
   categoriesSelect: document.querySelector('select[name=category]'),
 };
 
-document.addEventListener('DOMContentLoaded', e => {
-  return fetchCategories()
-    .then(data => data.map(item => categoriesSelecttamplate(item)).join(''))
-    .then(markUp =>
-      refs.categoriesSelect.insertAdjacentHTML('beforeend', markUp),
-    );
+document.addEventListener('DOMContentLoaded', async e => {
+  const data = await fetchCategories();
+  refs.categoriesSelect.insertAdjacentHTML(
+    'beforeend',
+    data.map(item => categoriesSelecttamplate(item)).join(''),
+  );
 });

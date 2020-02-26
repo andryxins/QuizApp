@@ -1,0 +1,8 @@
+<h2>{{question}}</h2>
+<form action="" class="currentQuestion">
+    {{#each incorrect_answers}}
+    <input type="radio" name="{{this}}" value="{{this}}" id="{{this}}">
+    <label for="{{this}}">{{this}}</label>
+    {{/each}}
+    <button type="submit" class="nextQuestionBtn-js">Next</button>
+</form>
