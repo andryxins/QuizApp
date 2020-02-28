@@ -1,5 +1,6 @@
 import responceForTest from '../services/responceForTest';
 import testInterFace from '../tamplate/testInterFace.hbs';
+import showResaltTemplate from '../tamplate/showResaltTemplate.hbs';
 
 const refs = {
   container: document.querySelector('.container'),
@@ -18,11 +19,10 @@ const testActions = {
   testStart(questions) {
     this.getCorrectAnswersAndQuantity(questions);
     this.testRun(questions);
-    // console.log('this.testResalt()', this.testResalt());
   },
   testRun(questions) {
     if (this.userAnswers.length === this.correctAnswers.length) {
-      // console.log('this.testResalt()', this.testResalt());
+      this.showTestResalt();
       return;
     }
     questions[this.currentQuestionIdx].incorrect_answers.push(
@@ -44,12 +44,20 @@ const testActions = {
       this.testRun(questions);
     });
   },
-  // testResalt() {
-  //   return this.correctAnswers.reduce((acc, item, idx) => {
-  //     if (item === this.userAnswers[idx]) acc += 1;
-  //     return;
-  //   }, 0);
-  // },
+  testResalt() {
+    return this.userAnswers.reduce((acc, item, idx) => {
+      item === this.correctAnswers[idx] && acc++;
+      return acc;
+    }, 0);
+  },
+  showTestResalt() {
+    const quantityOfCorrectAnswers = this.testResalt();
+    refs.container.innerHTML = '';
+    refs.container.insertAdjacentHTML(
+      'beforeend',
+      showResaltTemplate({ correctAnswers: quantityOfCorrectAnswers }),
+    );
+  },
 };
 
 refs.form.addEventListener('submit', async e => {
