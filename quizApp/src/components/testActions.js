@@ -1,17 +1,22 @@
 import responceForTest from '../services/responceForTest';
 import testInterFace from '../tamplate/testInterFace.hbs';
 import showResaltTemplate from '../tamplate/showResaltTemplate.hbs';
-
-const refs = {
-  container: document.querySelector('.container'),
-  form: document.querySelector('#searchQuestions'),
-};
+import { startTestActions } from '../components/testStartActions';
 
 const testActions = {
   correctAnswers: [],
   userAnswers: [],
   quantityOfQuestions: 0,
   currentQuestionIdx: 0,
+  container: document.querySelector('.container'),
+  initTest() {
+    const form = document.querySelector('#searchQuestions');
+    form.addEventListener('submit', async e => {
+      e.preventDefault();
+      const testsData = await responceForTest(e.target.elements);
+      testActions.testStart(testsData);
+    });
+  },
   getCorrectAnswersAndQuantity(questions) {
     this.correctAnswers.push(...questions.map(item => item.correct_answer));
     this.quantityOfQuestions += questions.length;
@@ -23,13 +28,17 @@ const testActions = {
   testRun(questions) {
     if (this.userAnswers.length === this.correctAnswers.length) {
       this.showTestResalt();
+      this.correctAnswers = [];
+      this.userAnswers = [];
+      this.quantityOfQuestions = 0;
+      this.currentQuestionIdx = 0;
       return;
     }
     questions[this.currentQuestionIdx].incorrect_answers.push(
       questions[this.currentQuestionIdx].correct_answer,
     );
-    refs.container.innerHTML = '';
-    refs.container.insertAdjacentHTML(
+    this.container.innerHTML = '';
+    this.container.insertAdjacentHTML(
       'beforeend',
       testInterFace(questions[this.currentQuestionIdx]),
     );
@@ -52,23 +61,15 @@ const testActions = {
   },
   showTestResalt() {
     const quantityOfCorrectAnswers = this.testResalt();
-    refs.container.innerHTML = '';
-    refs.container.insertAdjacentHTML(
+    this.container.innerHTML = '';
+    this.container.insertAdjacentHTML(
       'beforeend',
       showResaltTemplate({ correctAnswers: quantityOfCorrectAnswers }),
     );
+    this.container
+      .querySelector('.show-resalt-btn')
+      .addEventListener('click', e => startTestActions.renderingStartPage());
   },
 };
 
-refs.form.addEventListener('submit', async e => {
-  e.preventDefault();
-  const testsData = await responceForTest(e.target.elements);
-  testActions.testStart(testsData);
-});
-
-// category: "General Knowledge"
-// type: "multiple"
-// difficulty: "medium"
-// question: "Which of these companies does NOT manufacture automobiles?"
-// correct_answer: "Ducati"
-// incorrect_answers: (3) ["Nissan", "GMC", "Fiat"]
+export { testActions };
