@@ -2,6 +2,13 @@ html {
   box-sizing: border-box;
 }
 
+body {
+  background-color: #242582;
+  color: #ffffff;
+  margin: 0;
+  padding: 0;
+}
+
 *,
 *::before,
 *::after {
@@ -10,15 +17,13 @@ html {
 
 .container {
   margin: 0 auto;
-  padding: 0;
+  padding: 0 10px;
+  height: 100vh;
 }
 
-.serch-form {
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  padding: 0;
-  align-items: center;
-  width: 290px;
-}
+/* font-family: 'Raleway', ; */
+/* background-color: #242582; */
+/* color: #ffffff */
+/* border-color: #f64c72; */
+
+/* text color */

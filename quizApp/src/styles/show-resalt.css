@@ -1,0 +1,23 @@
+.show-resalt {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  font-family: 'Raleway';
+}
+
+.show-resalt__title {
+  margin: 0;
+  padding: 0;
+  margin-bottom: 20px;
+  font-family: inherit;
+}
+
+.show-resalt__quantity-answers {
+  margin: 0;
+  padding: 0;
+  margin-bottom: 20px;
+  font-size: 30px;
+  font-family: inherit;
+}
