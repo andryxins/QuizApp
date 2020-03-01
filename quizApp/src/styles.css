@@ -1,8 +1,10 @@
 html {
   box-sizing: border-box;
+  height: 100%;
 }
 
 body {
+  max-height: 100%;
   background-color: #242582;
   color: #ffffff;
   margin: 0;
@@ -19,6 +21,7 @@ body {
   margin: 0 auto;
   padding: 0 10px;
   height: 100vh;
+  overflow: hidden;
 }
 
 /* font-family: 'Raleway', ; */
