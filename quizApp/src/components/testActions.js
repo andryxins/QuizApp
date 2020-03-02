@@ -2,6 +2,7 @@ import responceForTest from '../services/responceForTest';
 import testInterFace from '../tamplate/testInterFace.hbs';
 import showResaltTemplate from '../tamplate/showResaltTemplate.hbs';
 import { startTestActions } from '../components/testStartActions';
+import Toastify from 'toastify-js';
 
 const testActions = {
   correctAnswers: [],
@@ -14,6 +15,15 @@ const testActions = {
     form.addEventListener('submit', async e => {
       e.preventDefault();
       const testsData = await responceForTest(e.target.elements);
+      if (!testsData.length) {
+        Toastify({
+          text: "Sory, we couldn't find anything",
+          backgroundColor: '#f64c72',
+          duration: 2000,
+          className: 'info',
+        }).showToast();
+        return;
+      }
       testActions.testStart(testsData);
     });
   },
@@ -26,7 +36,7 @@ const testActions = {
     this.testRun(questions);
   },
   testRun(questions) {
-    if (this.userAnswers.length === this.correctAnswers.length) {
+    if (this.quantityOfQuestions === this.currentQuestionIdx) {
       this.showTestResalt();
       this.correctAnswers = [];
       this.userAnswers = [];
@@ -34,7 +44,12 @@ const testActions = {
       this.currentQuestionIdx = 0;
       return;
     }
-    questions[this.currentQuestionIdx].incorrect_answers.push(
+    questions[this.currentQuestionIdx].incorrect_answers.splice(
+      Math.round(
+        Math.random() *
+          questions[this.currentQuestionIdx].incorrect_answers.length,
+      ),
+      0,
       questions[this.currentQuestionIdx].correct_answer,
     );
     this.container.innerHTML = '';
@@ -46,10 +61,19 @@ const testActions = {
       e.preventDefault();
       const userAnswer = Array.from(e.target.elements).find(
         item => item.checked,
-      ).value;
-      this.userAnswers.push(userAnswer);
+      );
+      if (!userAnswer) {
+        Toastify({
+          text: 'You should choose any answer!!',
+          backgroundColor: '#f64c72',
+          duration: 2000,
+          className: 'info',
+        }).showToast();
+        return;
+      }
+
+      this.userAnswers.push(userAnswer.value);
       this.currentQuestionIdx += 1;
-      console.log(this.userAnswers);
       this.testRun(questions);
     });
   },

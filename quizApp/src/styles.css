@@ -9,6 +9,7 @@ body {
   color: #ffffff;
   margin: 0;
   padding: 0;
+  overflow: hidden;
 }
 
 *,
@@ -21,7 +22,6 @@ body {
   margin: 0 auto;
   padding: 0 10px;
   height: 100vh;
-  overflow: hidden;
 }
 
 /* font-family: 'Raleway', ; */

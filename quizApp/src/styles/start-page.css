@@ -37,7 +37,7 @@
 .serch-form__type,
 .page-btn {
   border: 3px solid #f64c72;
-  background-color: #242582;
+  background: #242582;
   color: inherit;
   cursor: pointer;
   transition: transform 0.2s linear;
