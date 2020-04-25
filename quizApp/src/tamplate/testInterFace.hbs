@@ -1,10 +1,14 @@
 <div class="test-interface">
-    <h2 class="test-interface__title">{{question}}</h2>
-    <form action="" class="currentQuestion test-interface__form">
-        {{#each incorrect_answers}}
-        <input type="radio" name="answer" value="{{this}}" id="{{this}}" class="form__check-box">
-        <label for="{{this}}" class="form__label">{{this}}</label>
-        {{/each}}
-        <button type="submit" class="nextQuestionBtn-js page-btn page-btn--next-question">Next</button>
-    </form>
+  <h2 class="test-interface__title">{{question}}</h2>
+  <form class="currentQuestion test-interface__form">
+
+    {{#each incorrect_answers}}
+    <input type="radio" name="answer" value="{{this}}" id="{{this}}" class="form__check-box answear-js">
+    <label for="{{this}}" class="form__label">{{this}}</label>
+    {{/each}}
+
+
+    <button type="submit" class="nextQuestionBtn-js page-btn page-btn--next-question">Next</button>
+
+  </form>
 </div>

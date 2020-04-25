@@ -1,33 +1,20 @@
-# Webpack starter kit
+# QuizApp by me :-)
 
-[Живая страница](https://luxplanjay.github.io/webpack-starter-kit/) после деплоя
-через `npm run deploy`.
+### Usage
 
-## Использование
+Choose options, tap on 'Start' and try to get 10/10 rigth questions!
 
-- Скачать репо как архив
-- Переименовать папку под свой проект
-- В консоли перейти в корень проекта
-- Выполнить команду `npm install`
-- Ждать пока установятся все зависимости
+### About App
 
-## Скрипты
+Vanilla JS single-page app, markUp maded with HandleBars, for notification App
+using Toastify. Questions we get [Open Trivia DataBase](https://opentdb.com/).
+Development and build with
+Webpack([Webpack starter kit](https://github.com/luxplanjay/webpack-starter-kit)).
 
-- `npm start` - запускает режим разработки с дев-сервером.
-- `npm run build` - запускает режим сборки в прод, создастся папка `build`.
-- `npm run deploy` - запускает сборку в прод, после чего деплоит проект на GitHub
-Pages в репозиторий из свойства `homepage` в `package.json`. Автоматически
-создает ветку `gh-pages` в репозитории. Значение `homepage` необходимо подменить вручную на свой репозиторий.
+### How it Works
 
-## Папки и файлы
-
-- `src` - тут лежат исходники.
-- `src/index.html` - шаблон под html-файл, можно редактировать. В продакшене
-  сюда автоматически добаввятся теги `link` и `script`.
-- `src/index.js` - точка входа в приложение, сюда импортируем все остальное.
-- `build` - автоматически создастся в продакшене, тут будут готовые файлы.
-
-## Баги и улучшения
-
-Если нашли баг открывайте `issue`, обсудим, если пофиксили открывайте
-`pull request`.
+App make request to [Open Trivia DataBase](https://opentdb.com/), get available
+categories. After user select options, App make request and take random
+questions in selected categories. Then recursivly asking user all questions and
+show where he choose rigth choice, where - was make mistake. After 10 questions
+App show result.

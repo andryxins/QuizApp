@@ -40,7 +40,6 @@
   background: #242582;
   color: inherit;
   cursor: pointer;
-  transition: transform 0.2s linear;
 }
 
 .serch-form__category:hover,
@@ -51,7 +50,6 @@
 .serch-form__difficulty:focus,
 .serch-form__type:focus,
 .page-btn:focus {
-  transform: scale(1.1);
   background: #f64c72; /* fallback for old browsers */
   background: -webkit-linear-gradient(
     to right,

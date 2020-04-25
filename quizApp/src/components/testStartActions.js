@@ -2,6 +2,13 @@ import startTestTemplate from '../tamplate/startTestTemplate.hbs';
 import responceForCategories from '../services/responceForCategoriesOnStart';
 import { testActions } from './testActions';
 
+//------------------- START ---------------
+
+/*
+ * On init making request to Trivia and getting categories for test
+ * After rendering form with take options that was selected and starting test
+ */
+
 const refs = {
   container: document.querySelector('.container'),
 };
