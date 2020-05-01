@@ -1,5 +1,7 @@
 # QuizApp by me :-)
 
+You can try it [here](https://andryxins.github.io/QuizApp/)
+
 ### Usage
 
 Choose options, tap on 'Start' and try to get 10/10 rigth questions!

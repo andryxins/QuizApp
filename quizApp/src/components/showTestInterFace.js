@@ -1,10 +1,18 @@
 import testInterFace from '../tamplate/testInterFace.hbs';
+import decodeTestData from './decodeTestData';
 import Toastify from 'toastify-js';
 
 export const showTestInterFace = async (containerNode, questions) =>
   new Promise(res => {
     // inserting markUp with questions and answers to container
-    containerNode.insertAdjacentHTML('beforeend', testInterFace(questions));
+    // decoding specials symbols (", ', etc) when creating markUp
+
+    console.log(questions);
+
+    containerNode.insertAdjacentHTML(
+      'beforeend',
+      testInterFace(decodeTestData(questions)),
+    );
 
     // adding eventListner, all logic was writen in, need to refactor
     document.querySelector('.currentQuestion').addEventListener('submit', e => {
