@@ -5,13 +5,14 @@ const htmlDecode = input => {
 };
 
 export default ({ correct_answer, incorrect_answers, question }) => {
-  correct_answer = htmlDecode(correct_answer);
-  question = htmlDecode(question);
-  incorrect_answers.forEach(item => htmlDecode(item));
-
+  const decodedCorrect_answer = htmlDecode(correct_answer);
+  const decodedQuestion = htmlDecode(question);
+  const updatedIncorrect_answers = incorrect_answers.map(item =>
+    htmlDecode(item),
+  );
   return {
-    correct_answer: correct_answer,
-    incorrect_answers: incorrect_answers,
-    question: question,
+    correct_answer: decodedCorrect_answer,
+    question: decodedQuestion,
+    incorrect_answers: updatedIncorrect_answers,
   };
 };

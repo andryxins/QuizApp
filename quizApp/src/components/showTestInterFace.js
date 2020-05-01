@@ -7,12 +7,9 @@ export const showTestInterFace = async (containerNode, questions) =>
     // inserting markUp with questions and answers to container
     // decoding specials symbols (", ', etc) when creating markUp
 
-    console.log(questions);
+    questions = decodeTestData(questions);
 
-    containerNode.insertAdjacentHTML(
-      'beforeend',
-      testInterFace(decodeTestData(questions)),
-    );
+    containerNode.insertAdjacentHTML('beforeend', testInterFace(questions));
 
     // adding eventListner, all logic was writen in, need to refactor
     document.querySelector('.currentQuestion').addEventListener('submit', e => {
